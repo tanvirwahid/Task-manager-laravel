@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [AuthController::class, 'showLoginPage'])
+    ->name('login')
+    ->middleware('guest');
+Route::post('login', [AuthController::class, 'login']);
+Route::get('register', [AuthController::class, 'showRegistrationPage'])
+    ->middleware('guest');
+Route::post('register', [AuthController::class, 'register']);
 
-Route::get('login', function () {
-    return view('auth.login');
+Route::group([
+    'middleware' => 'auth'
+], function (){
+   Route::get('tasks', function () { return view('welcome');});
 });
