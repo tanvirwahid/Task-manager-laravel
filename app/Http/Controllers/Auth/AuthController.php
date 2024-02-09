@@ -5,11 +5,15 @@ namespace App\Http\Controllers\Auth;
 use App\Contracts\UserRepositoryInterface;
 use App\Enums\RolesEnum;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\UsersTrait;
+use App\Http\Requests\UserCreationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+
+    use UsersTrait;
 
     public function __construct(private UserRepositoryInterface $userRepository)
     {
@@ -44,24 +48,24 @@ class AuthController extends Controller
 
     }
 
-    public function register(Request $request)
+    public function register(UserCreationRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string',
-            'employee_id' => 'required|unique:users,employee_id',
-            'email' => 'required|unique:users,email',
-            'password' => 'required|string|confirmed|min:6'
-        ]);
-
-        $parameters = $request->all();
-        unset($parameters['password_confirmation']);
-
-        $this->userRepository->addUser(
-            $request->all(),
+        $this->createUser(
+            $request,
+            $this->userRepository,
             RolesEnum::MANAGER
         );
 
         return redirect('/')
             ->with('success', 'Successfully registered');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }

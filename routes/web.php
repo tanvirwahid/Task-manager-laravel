@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,18 @@ Route::group([
     'middleware' => 'auth'
 ], function (){
    Route::get('tasks', function () { return view('welcome');});
+   Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+
+   Route::group([
+       'prefix' => 'users',
+       'as' => 'users.'
+   ], function () {
+       Route::get('/create', [UserController::class, 'create'])->name('create');
+       Route::get('/', [UserController::class, 'index'])->name('index');
+       Route::post('/', [UserController::class, 'store'])->name('store');
+       Route::get('/{user}', [UserController::class, 'edit'])->name('edit');
+       Route::put('/{user}', [UserController::class, 'update'])->name('update');
+       Route::delete('/{user}', [UserController::class, 'destroy'])->name('delete');
+   });
+
 });
