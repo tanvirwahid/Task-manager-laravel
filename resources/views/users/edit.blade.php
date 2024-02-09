@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="max-w-md w-full bg-white p-8 rounded-lg">
-    <h2 class="text-2xl font-bold mb-6">Create Team Member</h2>
+    <h2 class="text-2xl font-bold mb-6">Edit Team Member</h2>
     <form method="POST" action="{{route('users.update', ['user' => $user->id])}}">
         @csrf
         @method('PUT')

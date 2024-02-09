@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,5 +41,17 @@ Route::group([
        Route::put('/{user}', [UserController::class, 'update'])->name('update');
        Route::delete('/{user}', [UserController::class, 'destroy'])->name('delete');
    });
+
+    Route::group([
+        'prefix' => 'projects',
+        'as' => 'projects.'
+    ], function () {
+        Route::get('/create', [ProjectController::class, 'create'])->name('create');
+        Route::get('/', [ProjectController::class, 'index'])->name('index');
+        Route::post('/', [ProjectController::class, 'store'])->name('store');
+        Route::get('/{project}', [ProjectController::class, 'edit'])->name('edit');
+        Route::put('/{project}', [ProjectController::class, 'update'])->name('update');
+        Route::delete('/{project}', [ProjectController::class, 'destroy'])->name('delete');
+    });
 
 });

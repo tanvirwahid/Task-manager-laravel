@@ -6,7 +6,7 @@ use App\Contracts\RoleRepositoryInterFace;
 use App\Exceptions\RoleNotFoundException;
 use App\Models\Role;
 
-class RoleRepository implements RoleRepositoryInterFace
+class EloquentRoleRepository implements RoleRepositoryInterFace
 {
     public function __construct(private Role $role)
     {

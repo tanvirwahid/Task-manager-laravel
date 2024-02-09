@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         if(config('app.env') == 'local')
         {
             $this->call(UserSeeder::class);
+            $this->call(ProjectSeeder::class);
         }
 
     }
