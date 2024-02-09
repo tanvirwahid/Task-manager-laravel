@@ -1,11 +1,21 @@
 @extends('layouts.layout')
 
 @section('content')
+
 <div class="w-screen max-w-full bg-white p-8 rounded-lg mx-auto">
+    <h2 class="text-xl font-semibold">Projects</h2>
     <div class="flex justify-between mb-4">
-        <h2 class="text-xl font-semibold">Projects</h2>
-        <a href="{{route('projects.create')}}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-            Add Project
+        <div class="container flex">
+
+            <form action="{{route('projects.index')}}" method="GET" class="flex">
+                <input type="text" name="name" class="border-2 border-gray-600 rounded max-h-10" placeholder="project name...">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-4 rounded max-h-10">Search</button>
+            </form>
+
+        </div>
+
+        <a href="{{route('projects.create')}}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded max-h-10 max-w-fit">
+            Add
         </a>
     </div>
 
