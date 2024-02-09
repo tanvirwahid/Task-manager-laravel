@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Contracts\RoleRepositoryInterFace;
 use App\Contracts\UserRepositoryInterface;
 use App\Enums\RolesEnum;
 use App\Http\Controllers\Controller;
@@ -15,7 +16,10 @@ class AuthController extends Controller
 
     use UsersTrait;
 
-    public function __construct(private UserRepositoryInterface $userRepository)
+    public function __construct(
+        private UserRepositoryInterface $userRepository,
+        private RoleRepositoryInterFace $roleRepository
+    )
     {
     }
 
@@ -50,10 +54,12 @@ class AuthController extends Controller
 
     public function register(UserCreationRequest $request)
     {
-        $this->createUser(
-            $request,
-            $this->userRepository,
-            RolesEnum::MANAGER
+        $this->userRepository->create(
+            $this->getProcessedParameterForUserCreation(
+                $request,
+                $this->roleRepository,
+                RolesEnum::MANAGER
+            )
         );
 
         return redirect('/')

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\RoleRepositoryInterFace;
 use App\Contracts\UserRepositoryInterface;
 use App\Enums\RolesEnum;
 use App\Http\Controllers\Traits\UsersTrait;
@@ -13,16 +14,19 @@ class UserController extends Controller
 {
     use UsersTrait;
 
-    public function __construct(private UserRepositoryInterface $userRepository)
+    public function __construct(
+        private UserRepositoryInterface $userRepository,
+        private RoleRepositoryInterFace $roleRepository
+    )
     {
     }
 
     public function index()
     {
-         $query = $this->userRepository
+        $query = $this->userRepository
             ->getTeamMembers();
 
-         return view('users.index', ['users' => $this->userRepository->paginate($query)]);
+        return view('users.index', ['users' => $this->userRepository->paginate($query)]);
     }
 
     public function create()
@@ -32,10 +36,12 @@ class UserController extends Controller
 
     public function store(UserCreationRequest $request)
     {
-        $this->createUser(
-            $request,
-            $this->userRepository,
-            RolesEnum::TEAM_MEMBER
+        $this->userRepository->create(
+            $this->getProcessedParameterForUserCreation(
+                $request,
+                $this->roleRepository,
+                RolesEnum::TEAM_MEMBER
+            )
         );
 
         return redirect()->route('users.index');
