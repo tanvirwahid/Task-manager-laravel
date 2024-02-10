@@ -23,7 +23,7 @@ class ProjectUpdateRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'code' => 'required|string|unique:projects,code,'.$this->project->id
+            'code' => 'required|string|unique:projects,code,'.$this->project->id,
         ];
     }
 }

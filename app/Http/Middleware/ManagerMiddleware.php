@@ -17,8 +17,7 @@ class ManagerMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!(Auth::check() && Auth::user()->role_id == Role::MANAGER_ROLE_ID))
-        {
+        if (! (Auth::check() && Auth::user()->role_id == Role::MANAGER_ROLE_ID)) {
             abort(403);
         }
 

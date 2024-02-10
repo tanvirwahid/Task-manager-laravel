@@ -12,17 +12,15 @@ use App\Http\Requests\TaskUpdateRequest;
 use App\Models\Project;
 use App\Models\Task;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class TaskController extends Controller
 {
     public function __construct(
-        private TaskRepositoryInterface   $taskRepository,
-        private RoleRepositoryInterFace   $roleRepository,
+        private TaskRepositoryInterface $taskRepository,
+        private RoleRepositoryInterFace $roleRepository,
         private StatusRepositoryInterface $statusRepository,
-        private UserRepositoryInterface   $userRepository
-    )
-    {
+        private UserRepositoryInterface $userRepository
+    ) {
     }
 
     public function index(Request $request)
@@ -40,7 +38,7 @@ class TaskController extends Controller
         return view('tasks.index', [
             'tasks' => $this->taskRepository->paginate($tasks),
             'statuses' => $this->statusRepository->findAll(),
-            'users' => $this->userRepository->getTeamMembersWithoutPagination()
+            'users' => $this->userRepository->getTeamMembersWithoutPagination(),
         ]);
     }
 
@@ -48,7 +46,7 @@ class TaskController extends Controller
     {
         return view('tasks.create', [
             'project' => $project,
-            'statuses' => $this->statusRepository->findAll()
+            'statuses' => $this->statusRepository->findAll(),
         ]);
     }
 
@@ -64,7 +62,7 @@ class TaskController extends Controller
         return view('tasks.edit', [
             'task' => $task,
             'statuses' => $this->statusRepository->findAll(),
-            'users' => $this->userRepository->getTeamMembersWithoutPagination()
+            'users' => $this->userRepository->getTeamMembersWithoutPagination(),
         ]);
     }
 
@@ -88,10 +86,10 @@ class TaskController extends Controller
     {
         $request->validate([
             'user_ids' => 'nullable|array',
-            'user_ids.*' => 'required|int'
+            'user_ids.*' => 'required|int',
         ]);
 
-        $userIds = $request->filled('user_ids')?$request->get('user_ids'):[];
+        $userIds = $request->filled('user_ids') ? $request->get('user_ids') : [];
 
         $this->taskRepository
             ->assignToUsers($id, $userIds);

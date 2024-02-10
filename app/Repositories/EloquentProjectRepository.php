@@ -18,5 +18,4 @@ class EloquentProjectRepository extends EloquentBaseRepository implements Projec
         return $this->project->query()
             ->where('name', 'like', '%'.$name.'%');
     }
-
 }

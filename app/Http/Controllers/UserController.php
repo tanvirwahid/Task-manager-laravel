@@ -17,8 +17,7 @@ class UserController extends Controller
     public function __construct(
         private UserRepositoryInterface $userRepository,
         private RoleRepositoryInterFace $roleRepository
-    )
-    {
+    ) {
     }
 
     public function index()

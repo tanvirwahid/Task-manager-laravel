@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Enums\StatusEnum;
 use App\Models\Status;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class StatusSeeder extends Seeder
@@ -19,14 +18,13 @@ class StatusSeeder extends Seeder
         $statuses = [
             StatusEnum::PENDING,
             StatusEnum::WORKING,
-            StatusEnum::DONE
+            StatusEnum::DONE,
         ];
 
-        foreach ($statuses as $status)
-        {
+        foreach ($statuses as $status) {
             Status::create(
                 [
-                    'name' => $status
+                    'name' => $status,
                 ]
             );
         }

@@ -23,7 +23,7 @@ class ProjectCreationRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'code' => 'required|string|unique:projects,code'
+            'code' => 'required|string|unique:projects,code',
         ];
     }
 }

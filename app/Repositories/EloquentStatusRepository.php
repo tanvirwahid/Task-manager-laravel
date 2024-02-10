@@ -16,5 +16,4 @@ class EloquentStatusRepository implements StatusRepositoryInterface
     {
         return $this->status->all();
     }
-
 }

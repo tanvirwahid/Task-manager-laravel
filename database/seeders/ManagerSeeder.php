@@ -3,9 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use function Laravel\Prompts\password;
 
 class ManagerSeeder extends Seeder
 {
@@ -22,7 +20,7 @@ class ManagerSeeder extends Seeder
             'email' => $user['email'],
             'role_id' => $user['role_id'],
             'employee_id' => $user['employee_id'],
-            'password' => bcrypt($user['password'])
+            'password' => bcrypt($user['password']),
         ]);
     }
 }

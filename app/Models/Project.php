@@ -12,7 +12,7 @@ class Project extends Model
 
     protected $fillable = [
         'name',
-        'code'
+        'code',
     ];
 
     public function tasks(): HasMany

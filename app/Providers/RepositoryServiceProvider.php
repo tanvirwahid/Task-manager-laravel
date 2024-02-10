@@ -8,10 +8,10 @@ use App\Contracts\StatusRepositoryInterface;
 use App\Contracts\TaskRepositoryInterface;
 use App\Contracts\UserRepositoryInterface;
 use App\Repositories\EloquentProjectRepository;
+use App\Repositories\EloquentRoleRepository;
 use App\Repositories\EloquentStatusRepository;
 use App\Repositories\EloquentTaskRepository;
 use App\Repositories\EloquentUserRepository;
-use App\Repositories\EloquentRoleRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider

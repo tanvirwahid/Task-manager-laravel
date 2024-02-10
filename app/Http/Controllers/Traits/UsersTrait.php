@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Traits;
 
 use App\Contracts\RoleRepositoryInterFace;
-use App\Contracts\UserRepositoryInterface;
 use Illuminate\Http\Request;
 
 trait UsersTrait
@@ -12,8 +11,7 @@ trait UsersTrait
         Request $request,
         RoleRepositoryInterFace $roleRepository,
         string $role
-    ): array
-    {
+    ): array {
         $roleId = $roleRepository
             ->FindRoleIdByName($role);
 

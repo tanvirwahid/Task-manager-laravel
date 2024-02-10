@@ -3,14 +3,13 @@
 namespace Database\Seeders;
 
 use App\Models\Role;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class RoleSeeder extends Seeder
 {
     const ROLES = [
         'manager',
-        'team_member'
+        'team_member',
     ];
 
     /**
@@ -20,10 +19,9 @@ class RoleSeeder extends Seeder
     {
         Role::truncate();
 
-        foreach (self::ROLES as $role)
-        {
+        foreach (self::ROLES as $role) {
             Role::create([
-                'name' => $role
+                'name' => $role,
             ]);
         }
     }

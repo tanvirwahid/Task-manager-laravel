@@ -19,7 +19,7 @@ class TaskFactory extends Factory
         return [
             'name' => $this->faker->title,
             'description' => $this->faker->text(),
-            'status_id' => rand(1,3)
+            'status_id' => rand(1, 3),
         ];
     }
 }

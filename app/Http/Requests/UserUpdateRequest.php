@@ -3,8 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Validation\Rule;
 
 class UserUpdateRequest extends FormRequest
 {
@@ -27,7 +25,7 @@ class UserUpdateRequest extends FormRequest
             'name' => 'required|string',
             'employee_id' => 'required|unique:users,employee_id,'.$this->user->id,
             'email' => 'required|unique:users,email,'.$this->user->id,
-            'position' => 'nullable|string'
+            'position' => 'nullable|string',
         ];
     }
 }

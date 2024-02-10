@@ -16,7 +16,7 @@ class ProjectController extends Controller
 
     public function index(Request $request)
     {
-        $name = $request->filled('name')?$request->get('name'): '';
+        $name = $request->filled('name') ? $request->get('name') : '';
         $projects = $this->projectRepository
             ->filterByName($name);
 

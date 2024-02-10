@@ -14,8 +14,8 @@ class EloquentRoleRepository implements RoleRepositoryInterFace
 
     public function FindRoleIdByName(string $name): int
     {
-        if (!in_array($name, config('all-roles'))) {
-            throw new RoleNotFoundException("Role " . $name . " does not exist");
+        if (! in_array($name, config('all-roles'))) {
+            throw new RoleNotFoundException('Role '.$name.' does not exist');
         }
 
         return $this->role
@@ -30,5 +30,4 @@ class EloquentRoleRepository implements RoleRepositoryInterFace
     {
         return auth()->user()->role->name;
     }
-
 }

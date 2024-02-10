@@ -15,7 +15,7 @@ class Task extends Model
         'name',
         'project_code',
         'description',
-        'status_id'
+        'status_id',
     ];
 
     public function project(): BelongsTo

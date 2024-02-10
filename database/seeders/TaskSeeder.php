@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Project;
 use App\Models\Task;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class TaskSeeder extends Seeder
@@ -16,7 +15,7 @@ class TaskSeeder extends Seeder
     {
         Task::truncate();
         Task::factory(10)->create([
-            'project_code' => Project::first()->code
+            'project_code' => Project::first()->code,
         ]);
 
     }

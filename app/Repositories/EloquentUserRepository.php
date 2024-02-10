@@ -27,5 +27,4 @@ class EloquentUserRepository extends EloquentBaseRepository implements UserRepos
     {
         return $this->getTeamMembers()->get();
     }
-
 }

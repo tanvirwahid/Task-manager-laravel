@@ -5,12 +5,9 @@ namespace App\Repositories;
 use App\Contracts\BaseRepositoryInterface;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Pagination\AbstractPaginator;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 abstract class EloquentBaseRepository implements BaseRepositoryInterface
 {
-
     public function __construct(protected Model $model)
     {
     }
@@ -23,6 +20,7 @@ abstract class EloquentBaseRepository implements BaseRepositoryInterface
     public function update(Model $model, array $parameters): Model
     {
         $model->update($parameters);
+
         return $model;
     }
 

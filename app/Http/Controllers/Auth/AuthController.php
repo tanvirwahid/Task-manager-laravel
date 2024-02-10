@@ -13,14 +13,12 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-
     use UsersTrait;
 
     public function __construct(
         private UserRepositoryInterface $userRepository,
         private RoleRepositoryInterFace $roleRepository
-    )
-    {
+    ) {
     }
 
     public function showLoginPage()
@@ -37,7 +35,7 @@ class AuthController extends Controller
     {
         $request->validate([
             'email' => 'required',
-            'password' => 'required'
+            'password' => 'required',
         ]);
 
         $credentials = $request->only('email', 'password');

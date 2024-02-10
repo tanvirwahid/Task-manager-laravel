@@ -26,7 +26,7 @@ class UserCreationRequest extends FormRequest
             'employee_id' => 'required|unique:users,employee_id',
             'email' => 'required|unique:users,email',
             'password' => 'required|string|confirmed|min:6',
-            'position' => 'nullable|string'
+            'position' => 'nullable|string',
         ];
     }
 }
