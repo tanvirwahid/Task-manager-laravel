@@ -12,6 +12,9 @@ class Role extends Model
 
     protected $table = 'roles';
 
+    const MANAGER_ROLE_ID = 1;
+    const TEAM_MEMBER_ROLE_ID = 2;
+
     protected $fillable = [
         'name'
     ];

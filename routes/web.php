@@ -28,10 +28,11 @@ Route::post('register', [AuthController::class, 'register']);
 Route::group([
     'middleware' => 'auth'
 ], function (){
-   Route::get('tasks', function () { return view('welcome');});
+
    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
    Route::group([
+       'middleware' => 'manager',
        'prefix' => 'users',
        'as' => 'users.'
    ], function () {
@@ -57,6 +58,7 @@ Route::group([
     });
 
     Route::group([
+        'middleware' => 'manager',
         'prefix' => 'projects',
         'as' => 'projects.'
     ], function () {

@@ -3,8 +3,10 @@
         <!-- Left side of header -->
         <div>
             <a href="{{route('tasks.index')}}" class="text-white text-lg font-semibold">Tasks</a>
-            <a href="{{route('users.index')}}" class="text-white text-lg font-semibold m-6">Team</a>
-            <a href="{{route('projects.index')}}" class="text-white text-lg font-semibold m-2">Projects</a>
+            @can('manage')
+                <a href="{{route('users.index')}}" class="text-white text-lg font-semibold m-6">Team</a>
+                <a href="{{route('projects.index')}}" class="text-white text-lg font-semibold m-2">Projects</a>
+            @endcan
         </div>
         <!-- Right side of header -->
         <div class="relative" >
