@@ -31,7 +31,13 @@
                 <form action="{{route('users.delete', ['user' => $user->id])}}" method="POST" class="inline">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="text-red-500 hover:text-red-600 px-2" onclick="confirmDelete(this)">Delete</button>
+                    <button type="submit" class="text-red-500 hover:text-red-600 px-2"
+                            onclick="confirmDelete(
+                                this,
+                                'Are you sure want to delete this employee?'
+                                )">
+                        Delete
+                    </button>
                 </form>
             </td>
         </tr>
@@ -41,13 +47,6 @@
 
     {{$users->links()}}
 </div>
-
-<script>
-    function confirmDelete(form) {
-        if (confirm('Are you sure you want to delete this user?')) {
-            $(form).submit();
-        }
-    }
-</script>
+@include('reusables.delete-form-submitter')
 
 @endsection

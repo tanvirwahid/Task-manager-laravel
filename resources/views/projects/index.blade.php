@@ -38,7 +38,14 @@
                 <form action="{{route('projects.delete', ['project' => $project->id])}}" method="POST" class="inline">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="text-red-500 hover:text-red-600 px-2" onclick="confirmDelete(this)">Delete</button>
+                    <button type="submit" class="text-red-500 hover:text-red-600 px-2"
+                            onclick="confirmDelete(
+                                this,
+                                'Are you sure want to delete this project?'
+                                )"
+                    >
+                        Delete
+                    </button>
                 </form>
                 @csrf
                 @method('DELETE')
@@ -51,12 +58,6 @@
     {{$projects->links()}}
 </div>
 
-<script>
-    function confirmDelete(form) {
-        if (confirm('Are you sure you want to delete this project?')) {
-            $(form).submit();
-        }
-    }
-</script>
+@include('reusables.delete-form-submitter')
 
 @endsection

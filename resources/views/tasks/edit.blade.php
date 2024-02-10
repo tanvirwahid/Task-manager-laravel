@@ -17,8 +17,12 @@
             @enderror
 
             @else
-            <input disabled id="name" type="text" name="name" class="border-2 border-gray-600 rounded-lg p-2 w-full"
+            <input disabled name="name" type="text" class="border-2 border-gray-600 rounded-lg p-2 w-full"
                    value="{{ $task->name }}" required autofocus>
+
+            <input hidden="hidden" name="name" id="name" type="text" class="border-2 border-gray-600 rounded-lg p-2 w-full"
+                   value="{{ $task->name }}" required autofocus>
+
             @endcan
 
         </div>
@@ -33,13 +37,14 @@
             <textarea disabled id="description" type="text" name="description"
                       class="border-2 border-gray-600 rounded-lg p-2 w-full" required
                       autofocus>{{$task->description}}</textarea>
+            <input hidden="hidden" name="description" value="{{$task->description}}">
             @endcan
             @error('description')
             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
             @enderror
         </div>
 
-        <div class="mb-4">
+        <div class="mb-2">
             <label for="status" class="block text-sm font-bold mb-2">Status</label>
             <select id="status_id" name="status_id" class="border-2 border-gray-600 rounded-lg p-2 w-full" required
                     autofocus>

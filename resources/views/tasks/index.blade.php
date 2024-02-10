@@ -62,7 +62,11 @@
                 <form action="{{route('tasks.delete', ['task' => $task->id])}}" method="POST" class="inline">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="text-red-500 hover:text-red-600 px-2" onclick="confirmDelete(this)">
+                    <button type="submit" class="text-red-500 hover:text-red-600 px-2"
+                            onclick="confirmDelete(
+                                this,
+                                'Are you sure you want to delete this task?'
+                                )">
                         Delete
                     </button>
                 </form>
@@ -77,6 +81,8 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+@include('reusables.delete-form-submitter')
+
 <script>
 
     $(document).ready(function () {
@@ -87,12 +93,6 @@
         });
 
     });
-
-    function confirmDelete(form) {
-        if (confirm('Are you sure you want to delete this task?')) {
-            $(form).submit();
-        }
-    }
 
 </script>
 
