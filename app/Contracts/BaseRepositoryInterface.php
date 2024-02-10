@@ -4,17 +4,15 @@ namespace App\Contracts;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\AbstractPaginator;
 
 interface BaseRepositoryInterface
 {
-    public function findById(int $id): Model;
-
     public function create(array $parameters): Model;
 
     public function update(Model $model, array $parameters): Model;
 
     public function destroy($id);
 
-    public function paginate(Builder $query, int $perPage = 10): LengthAwarePaginator;
+    public function paginate(Builder $query, int $perPage = 10);
 }

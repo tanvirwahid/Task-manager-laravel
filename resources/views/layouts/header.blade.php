@@ -2,7 +2,7 @@
     <div class="container mx-auto px-4 flex justify-between items-center">
         <!-- Left side of header -->
         <div>
-            <a class="text-white text-lg font-semibold">Tasks</a>
+            <a href="{{route('tasks.index')}}" class="text-white text-lg font-semibold">Tasks</a>
             <a href="{{route('users.index')}}" class="text-white text-lg font-semibold m-6">Team</a>
             <a href="{{route('projects.index')}}" class="text-white text-lg font-semibold m-2">Projects</a>
         </div>

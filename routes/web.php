@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,19 @@ Route::group([
        Route::put('/{user}', [UserController::class, 'update'])->name('update');
        Route::delete('/{user}', [UserController::class, 'destroy'])->name('delete');
    });
+
+    Route::group([
+        'prefix' => 'tasks',
+        'as' => 'tasks.'
+    ], function () {
+        Route::get('/create/{project}', [TaskController::class, 'create'])->name('create');
+        Route::get('/', [TaskController::class, 'index'])->name('index');
+        Route::post('/', [TaskController::class, 'store'])->name('store');
+        Route::get('/{task}', [TaskController::class, 'edit'])->name('edit');
+        Route::put('/{task}', [TaskController::class, 'update'])->name('update');
+        Route::delete('/{task}', [TaskController::class, 'destroy'])->name('delete');
+        Route::POST('/assign/{id}', [TaskController::class, 'assign'])->name('assign');
+    });
 
     Route::group([
         'prefix' => 'projects',

@@ -33,6 +33,7 @@
             <td class="border px-4 py-2 text-center">{{$project->code}}</td>
             <td class="border px-4 py-2 text-center">{{$project->name}}</td>
             <td class="border px-4 py-2 text-center">
+                <a href="{{route('tasks.create', ['project' => $project->id])}}" class="text-green-500 hover:text-green-600 px-2">Add Task</a>
                 <a href="{{route('projects.edit', ['project' => $project->id])}}" class="text-blue-500 hover:text-blue-600 px-2">Edit</a>
                 <form action="{{route('projects.delete', ['project' => $project->id])}}" method="POST" class="inline">
                     @csrf

@@ -18,10 +18,17 @@ class EloquentRoleRepository implements RoleRepositoryInterFace
             throw new RoleNotFoundException("Role " . $name . " does not exist");
         }
 
-        return $this->role->where('name', $name)
+        return $this->role
+            ->query()
+            ->where('name', $name)
             ->get()
             ->first()
             ->id;
+    }
+
+    public function getLoggedinUserRole(): string
+    {
+        return auth()->user()->role->name;
     }
 
 }

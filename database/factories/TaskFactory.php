@@ -2,16 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Project;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Project>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Task>
  */
-class ProjectFactory extends Factory
+class TaskFactory extends Factory
 {
-    protected $model = Project::class;
-
     /**
      * Define the model's default state.
      *
@@ -20,8 +17,9 @@ class ProjectFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->text(10),
-            'code' => fake()->unique()->text(10),
+            'name' => $this->faker->title,
+            'description' => $this->faker->text(),
+            'status_id' => rand(1,3)
         ];
     }
 }
