@@ -19,6 +19,7 @@
 
                 </select>
 
+                @can('manage')
                 <select id="user_ids" name="user_ids[]"
                         class="select2-multiple form-control border-2 border-gray-600 rounded max-h-10 "
                         multiple="multiple">
@@ -27,6 +28,7 @@
                     <option value="{{ $user->id }}">{{ $user->name }}</option>
                     @endforeach
                 </select>
+                @endcan
 
                 <button type="submit"
                         class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-4 rounded max-h-10">Search
